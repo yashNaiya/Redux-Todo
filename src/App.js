@@ -1,7 +1,19 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom'
+import Rootlayout from './components/Rootlayout';
+import TodoList from './components/TodoList';
+import Login from './components/Login';
+
 function App() {
+  const router = createBrowserRouter(createRoutesFromElements(
+    <Route path='/' element={<Rootlayout/>}>
+      <Route index element={<TodoList/>}></Route>
+      <Route path='/login' element={<Login/>}></Route>
+    </Route>
+))
   return (
     <div className="App">
-      <h1>Redux-todo</h1>
+      <RouterProvider router={router}/>
     </div>
   );
 }
