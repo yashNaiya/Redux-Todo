@@ -13,17 +13,18 @@ const userSlice = createSlice({
     initialState,
     reducers:{
         add(state,action){
-            const {name,number,email,passowrd,_id} = action.payload
+            const {name,number,email,passowrd,_id,list} = action.payload
            state._id = _id;
            state.name = name;
            state.email = email;
            state.number = number;
            state.passowrd = passowrd;
+           state.list = list
         },
         addtoList(state,action){
             state.list.push(action.payload)
         }
     }
 })
-export const {add,addtoList} = userSlice.actions
+export const {add,addtoList,remove} = userSlice.actions
 export default userSlice.reducer;

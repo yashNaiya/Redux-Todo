@@ -1,8 +1,12 @@
 import React from 'react'
 import { Button, Container, Nav, Navbar, NavbarCollapse, NavbarToggle } from 'react-bootstrap'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { remove } from '../store/loginSlice'
 
 const NavBar = () => {
+    const user = useSelector(state=>state.login)
+    const dispatch = useDispatch();
     return (
         <div>
             <Navbar expand="lg" className="bg-body-tertiary">
@@ -18,7 +22,10 @@ const NavBar = () => {
                     <NavbarToggle />
                     <NavbarCollapse className="justify-content-end">
                         {/* <Nav.Link to={'/login'} as={Link}>Login</Nav.Link> */}
-                        <Button to={'/login'} as={Link}>Login</Button>
+                        {user._id?<Button onClick={()=>{
+                            dispatch(remove())
+                        }}>Logout</Button>
+                        :<Button to={'/login'} as={Link}>Login</Button>}
                     </NavbarCollapse>
                 </Container>
             </Navbar>
